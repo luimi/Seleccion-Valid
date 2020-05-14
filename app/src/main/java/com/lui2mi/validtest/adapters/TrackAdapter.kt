@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.lui2mi.validtest.R
 import com.lui2mi.validtest.models.Track
+import com.squareup.picasso.Picasso
 
 class TrackAdapter(val context: Context, val items: List<Track> ) : RecyclerView.Adapter<TrackAdapter.ViewHolder>() {
 
@@ -23,6 +24,7 @@ class TrackAdapter(val context: Context, val items: List<Track> ) : RecyclerView
         holder.name.text = "${track.name} (${track.artist.name})"
         holder.duration.text = "${context.getString(R.string.adapter_duration)} ${track.getTimeDuration()}"
         holder.listeners.text = "${context.getString(R.string.adapter_listeners)} ${track.getFormatListeners()}"
+        Picasso.get().load(track.image[0].text).into(holder.thumbnail);
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

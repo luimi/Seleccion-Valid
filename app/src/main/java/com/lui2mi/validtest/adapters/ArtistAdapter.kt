@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.lui2mi.validtest.R
 import com.lui2mi.validtest.models.Artist
+import com.squareup.picasso.Picasso
 
 class ArtistAdapter(val context: Context, val items: List<Artist> ) : RecyclerView.Adapter<ArtistAdapter.ViewHolder>() {
 
@@ -22,6 +23,7 @@ class ArtistAdapter(val context: Context, val items: List<Artist> ) : RecyclerVi
         val artist: Artist = items[position]
         holder.name.text = artist.name
         holder.listeners.text = "${context.getString(R.string.adapter_listeners)} ${artist.getFormatListeners()}"
+        Picasso.get().load(artist.image[0].text).into(holder.thumbnail);
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
