@@ -8,10 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.lui2mi.validtest.R
+import com.lui2mi.validtest.models.Artist
 import com.lui2mi.validtest.models.Track
 import com.squareup.picasso.Picasso
 
-class TrackAdapter(val context: Context, val items: List<Track> ) : RecyclerView.Adapter<TrackAdapter.ViewHolder>() {
+class TrackAdapter(val context: Context, var items: List<Track> ) : RecyclerView.Adapter<TrackAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_track,null))
@@ -38,5 +39,8 @@ class TrackAdapter(val context: Context, val items: List<Track> ) : RecyclerView
             duration = itemView.findViewById(R.id.tv_duration)
             listeners = itemView.findViewById(R.id.tv_listeners)
         }
+    }
+    fun includeList(newData: List<Track>){
+        items = items.plus(newData)
     }
 }

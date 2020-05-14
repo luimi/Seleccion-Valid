@@ -11,7 +11,7 @@ import com.lui2mi.validtest.R
 import com.lui2mi.validtest.models.Artist
 import com.squareup.picasso.Picasso
 
-class ArtistAdapter(val context: Context, val items: List<Artist> ) : RecyclerView.Adapter<ArtistAdapter.ViewHolder>() {
+class ArtistAdapter(val context: Context, var items: List<Artist> ) : RecyclerView.Adapter<ArtistAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_artist,null))
@@ -35,5 +35,8 @@ class ArtistAdapter(val context: Context, val items: List<Artist> ) : RecyclerVi
             name = itemView.findViewById(R.id.tv_name)
             listeners = itemView.findViewById(R.id.tv_listeners)
         }
+    }
+    fun includeList(newData: List<Artist>){
+        items = items.plus(newData)
     }
 }

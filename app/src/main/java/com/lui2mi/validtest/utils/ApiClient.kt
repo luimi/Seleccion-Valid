@@ -14,19 +14,19 @@ class ApiClient(val context: Context) {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    fun getTopArtist(callback: (result: ArtistResponse) -> Unit) {
+    fun getTopArtist(page: Int, callback: (result: ArtistResponse) -> Unit) {
         Thread(Runnable {
             try{
-                val call = retrofit.create(ApiService::class.java).getTopArtist("spain",context.getString(R.string.key),"json").execute()
+                val call = retrofit.create(ApiService::class.java).getTopArtist("spain",context.getString(R.string.key),"json", page).execute()
                 val result =  call.body() as ArtistResponse
                 callback(result)
             }catch (e:Exception){}
         }).start()
     }
-    fun getTopTracks(callback: (result: TrackResponse) -> Unit) {
+    fun getTopTracks(page: Int, callback: (result: TrackResponse) -> Unit) {
         Thread(Runnable {
             try{
-                val call = retrofit.create(ApiService::class.java).getTopTracks("spain",context.getString(R.string.key),"json").execute()
+                val call = retrofit.create(ApiService::class.java).getTopTracks("spain",context.getString(R.string.key),"json", page).execute()
                 val result =  call.body() as TrackResponse
                 callback(result)
             }catch (e:Exception){}
