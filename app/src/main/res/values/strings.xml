@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">ValidTest</string>
+    <string name="app_name">Last.fm</string>
     <string name="key">829751643419a7128b7ada50de590067</string>
 
     <string name="main_artists">Top de Artistas</string>
-    <string name="main_tracks">Top de Pistas</string>
+    <string name="main_tracks">Top de Canciones</string>
+
+    <string name="adapter_listeners">Escuchado: </string>
+    <string name="adapter_duration">Duracion: </string>
 </resources>
