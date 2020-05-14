@@ -35,13 +35,20 @@
             android:layout_weight="1"
             android:text="@string/main_tracks" />
     </info.hoang8f.android.segmented.SegmentedGroup>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_lists"
+    <cz.kinst.jakub.view.SimpleStatefulLayout
+        android:id="@+id/sl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_lists"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </cz.kinst.jakub.view.SimpleStatefulLayout>
+
 
 
 </LinearLayout>

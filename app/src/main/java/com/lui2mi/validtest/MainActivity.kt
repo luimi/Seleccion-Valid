@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.RadioGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,8 @@ import com.lui2mi.validtest.adapters.ArtistAdapter
 import com.lui2mi.validtest.adapters.TrackAdapter
 import com.lui2mi.validtest.utils.ApiClient
 import com.lui2mi.validtest.utils.EndlessRecyclerViewScrollListener
+import cz.kinst.jakub.view.SimpleStatefulLayout
+import cz.kinst.jakub.view.StatefulLayout
 import info.hoang8f.android.segmented.SegmentedGroup
 
 class MainActivity : AppCompatActivity() {
@@ -23,10 +26,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var adapter: RecyclerView.Adapter<*>
     lateinit var scrollListener: EndlessRecyclerViewScrollListener
     lateinit var tops: SegmentedGroup
+    lateinit var content: SimpleStatefulLayout
     var page = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        content = findViewById(R.id.sl_content)
+        content.showProgress()
         list = findViewById(R.id.rv_lists)
         val manager: LinearLayoutManager = LinearLayoutManager(this)
         list.layoutManager = manager
@@ -71,6 +77,7 @@ class MainActivity : AppCompatActivity() {
                     adapter = ArtistAdapter(this, it.topartists.artist)
                     list.adapter = adapter
                 }
+                content.showContent()
                 adapter.notifyDataSetChanged()
             }
         }
@@ -84,6 +91,7 @@ class MainActivity : AppCompatActivity() {
                     adapter = TrackAdapter(this, it.tracks.track)
                     list.adapter = adapter
                 }
+                content.showContent()
                 adapter.notifyDataSetChanged()
             }
         }
