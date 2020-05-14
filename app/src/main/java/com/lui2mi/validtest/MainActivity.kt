@@ -10,6 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        ApiClient(this).getTopArtist()
+
+    }
+    fun getArtists(){
+        ApiClient(this).getTopArtist{
+
+        }
     }
 }
