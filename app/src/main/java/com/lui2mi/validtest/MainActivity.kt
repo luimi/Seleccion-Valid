@@ -1,11 +1,15 @@
 package com.lui2mi.validtest
 
+import android.net.ConnectivityManager
+import android.net.Network
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.RadioGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.lui2mi.validtest.adapters.ArtistAdapter
 import com.lui2mi.validtest.adapters.TrackAdapter
 import com.lui2mi.validtest.utils.ApiClient
@@ -56,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             }
         list.addOnScrollListener(scrollListener)
         getArtists(false)
-
+        getConnectionListener()
     }
     fun getArtists(isContinue: Boolean){
         ApiClient(this).getTopArtist(page){
@@ -84,5 +88,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    fun getConnectionListener(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+            connectivityManager?.let {
 
+                it.registerDefaultNetworkCallback(object : ConnectivityManager.NetworkCallback() {
+                    override fun onAvailable(network: Network) {
+                        Snackbar.make(findViewById(R.id.context_view), R.string.alert_connection, Snackbar.LENGTH_SHORT)
+                            .show();
+                    }
+                    override fun onLost(network: Network?) {
+                        Snackbar.make(findViewById(R.id.context_view), R.string.alert_noconnection, Snackbar.LENGTH_SHORT)
+                            .show();
+                    }
+                })
+            }
+        }
+    }
 }

@@ -7,4 +7,7 @@
 
     <string name="adapter_listeners">Escuchado: </string>
     <string name="adapter_duration">Duracion: </string>
+
+    <string name="alert_noconnection">Desconectado de la red</string>
+    <string name="alert_connection">Conectado a la red</string>
 </resources>
